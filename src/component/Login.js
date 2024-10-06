@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setProfile, setToken } from "../redux/profileReducer";
+import Loader from "./ui/loader";
 
 const Login = () => {
 
@@ -74,6 +75,12 @@ const Login = () => {
       }
     }
   }
+
+  if(loading){
+    return (
+      <Loader/>
+    )
+  }  
 
   return (
     <>

@@ -2,24 +2,38 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_URL } from "../../config";
-import { useSelector } from "react-redux";
+import Loader from "../../component/ui/loader";
 
 const Users = () => {
 
-    const [data, setData] = useState([]);
-    const token           = useSelector((state)=>state.profile.token);
+    const [data, setData]       = useState([]);
+    const [loading, setLoading] = useState(true);
+    
     
     const getData = async () =>{
+      try{
         const response = await axios.get(`${API_URL}/users`,{
             withCredentials: true, // This is for token in cookies
         });
-        console.log(response);
+        // console.log(response.data);
+        setData(response.data);
+        setLoading(false);
+      }
+      catch(error){
+        console.error(error.message);
+        setLoading(false);
+      } 
     }
 
     useEffect(() => {
         getData();
     },[]);
 
+  if(loading){
+    return (
+      <Loader/>
+    )
+  }  
 
   return (
     <>
