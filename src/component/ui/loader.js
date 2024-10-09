@@ -4,7 +4,7 @@ const Loader = () => {
   return (
     <>
     <div className="vh-100 d-flex align-items-center justify-content-center">
-       <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+       <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
     </>
   )
