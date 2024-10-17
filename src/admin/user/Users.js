@@ -20,7 +20,8 @@ const Users = () => {
         
     const getData = async () =>{
       try{
-        const response = await axios.get(`${API_URL}/users`,{
+        
+        const response = await axios.get(`${API_URL}/users`, {
             withCredentials: true, 
         });
         console.log(response.data.data);
@@ -91,7 +92,7 @@ const Users = () => {
         }).then(async (result) => {
           if (result.isConfirmed) {
          try{
-            const response = await axios.get(`${API_URL}/users/${id}`, {
+            const response = await axios.get(`${API_URL}/users/status-change/${id}`, {
               withCredentials: true, 
             })
             toast.success(response.data.message);
@@ -138,7 +139,7 @@ const Users = () => {
           <div className="row g-4">
             <div className="col-12">
               <div className="mb-4">
-                <Link to="#"><button className="btn btn-primary mb-3">Add <i className="bi bi-plus-lg"></i></button></Link>
+                <Link to="/users/create"><button className="btn btn-primary mb-3">Add <i className="bi bi-plus-lg"></i></button></Link>
                 <Link to="#"><button className="btn btn-primary ms-2 mb-3"><i className="ri-refresh-line"></i></button></Link>
                 <table
                   id="basic-datatable"
@@ -163,13 +164,13 @@ const Users = () => {
                       <td>{user.mobile}</td>
                       <td>
                           {user.status == 1 ? (
-                            <span className="badge bg-success" onClick={() => handleStatuChange(user._id)}>Active</span>
+                            <span className="badge bg-success" style={{ cursor: 'pointer' }} onClick={() => handleStatuChange(user._id)}>Active</span>
                           ) : (
-                            <span className="badge bg-danger" onClick={() => handleStatuChange(user._id)}>Inactive</span>
+                            <span className="badge bg-danger" style={{ cursor: 'pointer' }} onClick={() => handleStatuChange(user._id)}>Inactive</span>
                           )}
                       </td>
                       <td>
-                        <Link to={`/user/${user._id}`} className="badge bg-primary">
+                        <Link to={`/users/${user._id}`} className="badge bg-primary">
                           <Pencil size={16} />
                         </Link>
                         <Link className="badge bg-danger ms-2" onClick={ ()=>handleDelete(user._id)}><Trash size={16} /></Link>
@@ -202,11 +203,11 @@ const Users = () => {
               {/* end card */}
             </div>
             {/* end col*/}
-          </div>{" "}
+          </div>
           {/* end row*/}
-        </div>{" "}
+        </div>
         {/* container */}
-      </div>{" "}
+      </div>
       {/* content */}
     </>
   );
